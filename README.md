@@ -46,9 +46,9 @@ such as Firebase, passport.js, etc.
   1. Now that your google oauth2 client is set up, you are ready to code.
      In your web server, put a copy of the index.html file from
      https://github.com/env3d/oauth-basic-tutorial/blob/main/index.html
-     to the `/var/www/html/security-oauth-basic` directory, this way
+     to the `/var/www/html/oauth-basic-tutorial` directory, this way
      you can access this file using the url
-     https://xxx.wmdd4950.com/security-oauth-basic/
+     https://xxx.wmdd4950.com/oauth-basic-tutorial/
      where xxx is your custom domain name.
 
   1. Below are the few things you need to change in the facebook example
