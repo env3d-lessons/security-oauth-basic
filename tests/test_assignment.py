@@ -5,14 +5,16 @@ import re
 
 @pytest.fixture
 def my_server_name():
-    os.popen('cp /var/www/html/oauth-basic-tutorial/index.html .').read()
-    server_name = os.popen("sudo apachectl -S | grep -o -P '\\S+wmdd4950.com'").read()
-    if not pathlib.Path('server_name.txt').is_file():
-        f = open('server_name.txt','w')
-        f.write(server_name)
-        f.close()
-
-    return open('server_name.txt').read().strip()
+    if 'CODESPACES' in os.environ:
+        return 'localhost'
+    else:
+        os.popen('cp /var/www/html/oauth-basic-tutorial/index.html .').read()
+        server_name = os.popen("sudo apachectl -S | grep -o -P '\\S+wmdd4950.com'").read()
+        if not pathlib.Path('server_name.txt').is_file():
+            f = open('server_name.txt','w')
+            f.write(server_name)
+            f.close()
+        return open('server_name.txt').read().strip()
 
 def test_file_exists(my_server_name):
     with open('index.html') as f:
@@ -37,5 +39,8 @@ def test_google_token(my_server_name):
             "must use google token")
 
 def test_http(my_server_name):
-    content = os.popen(f'curl --head -s https://{my_server_name}/oauth-basic-tutorial/').read()
+    if 'CODESPACES' in os.environ:
+        content = os.popen(f'curl --head -s {my_server_name}').read()
+    else:
+        content = os.popen(f'curl --head -s https://{my_server_name}/oauth-basic-tutorial/').read()
     assert '200' in content

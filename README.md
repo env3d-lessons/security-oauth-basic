@@ -38,8 +38,7 @@ such as Firebase, passport.js, etc.
 
   1. Be sure to fill out the "Authorized Javascript Origin" and
      "Authorized Redirect URL"!  The Authorized Redirect URL will
-     be https://xxx.wmdd4950.com/security-oauth-basic/ where
-     xxx is your custom domain name.
+     be the URL of your index.html file.
 
      ![Credentials](images/image2.png)
 
