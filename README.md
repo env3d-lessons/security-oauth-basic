@@ -43,7 +43,11 @@ such as Firebase, passport.js, etc.
      ![Credentials](images/image2.png)
 
   1. Now that your google oauth2 client is set up, you are ready to code.
-     In your web server, put a copy of the index.html file from
+
+     If you are working in codespaces, the codespaces directory is already 
+     configured as the root of your webserver.
+
+     If you are using your own web server, put a copy of the index.html file from
      https://github.com/env3d/oauth-basic-tutorial/blob/main/index.html
      to the `/var/www/html/oauth-basic-tutorial` directory, this way
      you can access this file using the url
@@ -58,11 +62,9 @@ such as Firebase, passport.js, etc.
 	    - The google login url is https://accounts.google.com/o/oauth2/v2/auth
 	    - In the scope field, Instead of the `public_profile`, Google's scope is simply `profile`
 	- In step 2
-	    - The token exchange url is https://oauth2.googleapis.com/token
-	    - The token exhcange uses POST, not GET
-	    - The `content-type` of the token exchange request must be
-	      `application/x-www-form-urlencoded`
-	- In step 4
+	    - Retrieve the token from the URL fragment
+	- In step 3
+       - Google's userinfo endpoint is at https://openidconnect.googleapis.com/v1/userinfo 
 	    - The json returned has a slightly different structure
 
   1. The end result should look something like this:

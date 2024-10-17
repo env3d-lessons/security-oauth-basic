@@ -32,11 +32,11 @@ def test_google_login(my_server_name):
         assert 'https://accounts.google.com/o/oauth2/v2/auth' in content, (
             "must redirect to google login")
 
-def test_google_token(my_server_name):
+def test_google_userinfo(my_server_name):
     with open('index.html') as f:
         content = f.read()
-        assert 'https://oauth2.googleapis.com/token' in content, (
-            "must use google token")
+        assert 'https://openidconnect.googleapis.com/v1/userinfo' in content, (
+            "must use google userinfo endpoint")
 
 def test_http(my_server_name):
     if 'CODESPACES' in os.environ:
