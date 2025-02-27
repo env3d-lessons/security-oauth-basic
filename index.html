@@ -16,7 +16,7 @@
 		// For a version using auth code flow with pkce, look at the pkce branch
 
 		// Need client_id to be global
-		let client_id = '467933425294328';
+		let client_id = '107256413984-himbdkj6rbv03pcj7sib3bjb8jvv45u0.apps.googleusercontent.com';
 
 		function login_redirect() {
 			// Many apps would display a "Login" button to alert users that
@@ -33,11 +33,11 @@
 
 			// This will redirect the page to facebook.
 
-			let redirect_url = `https://www.facebook.com/v20.0/dialog/oauth`;
+			let redirect_url = `https://accounts.google.com/o/oauth2/v2/auth`;
 			let params = [`client_id=${client_id}`,
 			`redirect_uri=${document.location.href}`,
 				`response_type=token`,
-				`scope=openid email public_profile`].join('&');
+				`scope=openid email profile`].join('&');
 
 			document.location.href = `${redirect_url}?${params}`;
 		}
@@ -51,7 +51,7 @@
 		}
 
 		async function api_call(token) {
-			let api_result = await fetch('https://graph.facebook.com/v20.0/me?fields=name,email,picture', {
+			let api_result = await fetch('https://openidconnect.googleapis.com/v1/userinfo', {
 				// IMPORTANT:  You must include the token in the Authroization header
 				//             Otherwise how can facebook know who is calling?
 				headers: {
@@ -64,7 +64,9 @@
 
 
 		function render_page(myJson) {
-			// Pure javascript to insert a couple of components to the page
+		    // Pure javascript to insert a couple of components to the page
+		    console.log(myJson);
+		    /*
 			let userinfo = document.createElement('h2');
 			userinfo.innerText = `Hello ${myJson.name}`;
 			document.body.append(userinfo);
@@ -72,6 +74,7 @@
 			let userpic = document.createElement('img');
 			userpic.src = myJson.picture.data.url;
 			document.body.append(userpic);
+*/
 		}
 
 		async function load() {
