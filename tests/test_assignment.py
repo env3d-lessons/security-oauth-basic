@@ -8,11 +8,11 @@ def my_server_name():
     if 'CODESPACES' in os.environ:
         return 'localhost'
     else:
-        os.popen('cp /var/www/html/oauth-basic-tutorial/index.html .').read()
-        server_name = os.popen("sudo apachectl -S | grep -o -P '\\S+wmdd4950.com'").read()
+        username = os.getlogin()
+        current_directory = os.path.basename(os.getcwd())
         if not pathlib.Path('server_name.txt').is_file():
             f = open('server_name.txt','w')
-            f.write(server_name)
+            f.write(f'https://learn.operatoroverload.com/~{username}/{current_directory}/')
             f.close()
         return open('server_name.txt').read().strip()
 
