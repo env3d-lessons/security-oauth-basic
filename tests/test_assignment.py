@@ -39,8 +39,5 @@ def test_google_userinfo(my_server_name):
             "must use google userinfo endpoint")
 
 def test_http(my_server_name):
-    if 'CODESPACES' in os.environ:
-        content = os.popen(f'curl --head -s {my_server_name}').read()
-    else:
-        content = os.popen(f'curl --head -s https://{my_server_name}/oauth-basic-tutorial/').read()
+    content = os.popen(f'curl --head -s {my_server_name}').read()
     assert '200' in content
