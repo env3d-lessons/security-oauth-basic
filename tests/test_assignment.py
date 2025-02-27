@@ -6,7 +6,7 @@ import re
 @pytest.fixture
 def my_server_name():
     if 'CODESPACES' in os.environ or os.getenv("GITHUB_ACTIONS") == "true":
-        return 'localhost'
+        return 'localhost' if not pathlib.Path('server_name.txt').is_file() else open('server_name.txt').read().strip()
     else:
         username = os.getlogin()
         current_directory = os.path.basename(os.getcwd())
