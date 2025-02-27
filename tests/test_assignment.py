@@ -5,7 +5,7 @@ import re
 
 @pytest.fixture
 def my_server_name():
-    if 'CODESPACES' in os.environ:
+    if 'CODESPACES' in os.environ or os.getenv("GITHUB_ACTIONS") == "true":
         return 'localhost'
     else:
         username = os.getlogin()
