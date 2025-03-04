@@ -17,7 +17,7 @@ If you have done everything correct, you should be able to access
 your index.html page using the url:
 
 ```
-https://learn.operatoroverload.com/${USERID}/${ASSIGNMENT_REPO}/
+https://learn.operatoroverload.com/~${USERID}/${ASSIGNMENT_REPO}/
 ```
 
 # Introduction
